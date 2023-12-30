@@ -11,7 +11,7 @@ const Banner = () => {
           <img src={img1} className="w-full rounded-xl" />
           {/* For Slide 1 */}
 
-          <div className="absolute h-full  bg-gradient-to-r from-[#151515] to-[rgba(21, 21, 21, 0.00)]  left-0 top-0">
+          <div className="absolute rounded-xl h-full  bg-gradient-to-r from-[#151515] to-[rgba(21, 21, 21, 0.00)]  left-0 top-0">
             <div className="mt-24 ml-28">
               <h2 className="text-6xl font-bold mb-4 text-white">
                 Affordable <br /> Price For Car <br /> Servicing
@@ -43,8 +43,8 @@ const Banner = () => {
         </div>
         {/* slide 2 */}
         <div id="slide2" className="carousel-item relative w-full">
-          <img src={img2} className="w-full" />
-          <div className="absolute h-full  bg-gradient-to-r from-[#151515] to-[rgba(21, 21, 21, 0.00)]  left-0 top-0">
+          <img src={img2} className="w-full rounded-xl" />
+          <div className="absolute h-full rounded-xl  bg-gradient-to-r from-[#151515] to-[rgba(21, 21, 21, 0.00)]  left-0 top-0">
             <div className="mt-24 ml-28">
               <h2 className="text-6xl font-bold mb-4 text-white">
                 Affordable <br /> Price For Car <br /> Servicing
@@ -76,8 +76,8 @@ const Banner = () => {
         </div>
         {/* slide 3 */}
         <div id="slide3" className="carousel-item relative w-full">
-          <img src={img3} className="w-full" />
-          <div className="absolute h-full  bg-gradient-to-r from-[#151515] to-[rgba(21, 21, 21, 0.00)]  left-0 top-0">
+          <img src={img3} className="w-full rounded-xl" />
+          <div className="absolute h-full rounded-xl  bg-gradient-to-r from-[#151515] to-[rgba(21, 21, 21, 0.00)]  left-0 top-0">
             <div className="mt-24 ml-28">
               <h2 className="text-6xl font-bold mb-4 text-white">
                 Affordable <br /> Price For Car <br /> Servicing
@@ -109,8 +109,8 @@ const Banner = () => {
         </div>
         {/* slide 4 */}
         <div id="slide4" className="carousel-item relative w-full">
-          <img src={img4} className="w-full" />
-          <div className="absolute h-full  bg-gradient-to-r from-[#151515] to-[rgba(21, 21, 21, 0.00)]  left-0 top-0">
+          <img src={img4} className="w-full rounded-xl" />
+          <div className="absolute h-full rounded-xl  bg-gradient-to-r from-[#151515] to-[rgba(21, 21, 21, 0.00)]  left-0 top-0">
             <div className="mt-24 ml-28">
               <h2 className="text-6xl font-bold mb-4 text-white">
                 Affordable <br /> Price For Car <br /> Servicing
