@@ -1,27 +1,47 @@
+import { Link } from "react-router-dom";
+import img from "../../../public/assets/images/login/login.svg";
 
-import img from '../../../public/assets/images/login/login.svg'
-import { FaFacebook } from "react-icons/fa";
-import { FaGoogle } from "react-icons/fa";
-import { Link } from 'react-router-dom';
+const Registration = () => {
 
+    const handleRegister  = (e)=> {
+        e.preventDefault();
+        const form = e.target;
+        const name = form.name.value;
+        const email = form.email.value;
+        const password = form.password.value;
 
-const Login = () => {
+        console.log(name, email, password);
+
+    }
   return (
     <div>
       <div className="hero min-h-screen bg-base-200">
         <div className="hero-content flex-col lg:flex-row">
-          <div className="text-center lg:text-left w-1/2">
+          <div className="text-center mr-12 w-1/2">
             <img src={img} alt="" />
           </div>
           <div className="card shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
-            <h1 className="text-5xl font-bold text-center mt-4">Login!</h1>
-            <form className="card-body">
+            <h1 className="text-5xl font-bold text-center mt-4">Register!</h1>
+            <form onSubmit={handleRegister} className="card-body">
+              <div className="form-control">
+                <label className="label">
+                  <span className="label-text">Name</span>
+                </label>
+                <input
+                  type="text"
+                  name="name"
+                  placeholder="Name"
+                  className="input input-bordered"
+                  required
+                />
+              </div>
               <div className="form-control">
                 <label className="label">
                   <span className="label-text">Email</span>
                 </label>
                 <input
                   type="email"
+                  name="email"
                   placeholder="email"
                   className="input input-bordered"
                   required
@@ -33,34 +53,21 @@ const Login = () => {
                 </label>
                 <input
                   type="password"
+                  name="password"
                   placeholder="password"
                   className="input input-bordered"
                   required
                 />
-                <label className="label">
-                  <a href="#" className="label-text-alt link link-hover">
-                    Forgot password?
-                  </a>
-                </label>
               </div>
               <div className="form-control mt-6">
-                <button className="btn btn-primary">Login</button>
+                <button className="btn btn-primary">Register</button>
               </div>
             </form>
-            <p className="text-center">Or Sign In With</p>
-            <div className="flex justify-center gap-4 items-center mt-6">
-              <div className="text-2xl  p-2 rounded-full bg-base-200">
-                <FaFacebook></FaFacebook>
-              </div>
-              <div className="text-xl  p-2 rounded-full bg-base-200">
-                <FaGoogle></FaGoogle>
-              </div>
-            </div>
-            <p className='text-center p-2 mb-2'>
-              New Here ? 
-              <Link to={"/register"}>
+            <p className="text-center p-2 mb-2">
+              Already Have an account ?
+              <Link to={"/login"}>
                 <button className="btn btn-active btn-link">
-                  Registration Now
+                  Login
                 </button>
               </Link>
             </p>
@@ -71,4 +78,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Registration;
