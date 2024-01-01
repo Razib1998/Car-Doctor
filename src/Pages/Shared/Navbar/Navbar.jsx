@@ -8,17 +8,17 @@ const Navbar = () => {
       <>
         <NavLink to={"/"}>
           <li>
-            <a>Home</a>
+            <button>Home</button>
           </li>
         </NavLink>
         <NavLink to={"/blog"}>
           <li>
-            <a>Blog</a>
+            <button>Blog</button>
           </li>
         </NavLink>
         <NavLink to={"/contact"}>
           <li>
-            <a>Contact</a>
+            <button>Contact</button>
           </li>
         </NavLink>
       </>
@@ -52,7 +52,7 @@ const Navbar = () => {
             </ul>
           </div>
           <Link>
-            <a className="btn btn-ghost text-xl"><img src={logo} alt="" /></a>
+            <img src={logo} alt="" />
           </Link>
         </div>
         <div className="navbar-center hidden lg:flex">
