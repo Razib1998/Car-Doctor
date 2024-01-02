@@ -30,7 +30,7 @@ const Registration = () => {
             });
            }
         })
-        .then(error =>{
+        .catch(error =>{
             console.error(error)
         })
 
@@ -53,6 +53,18 @@ const Registration = () => {
                   type="text"
                   name="name"
                   placeholder="Name"
+                  className="input input-bordered"
+                  required
+                />
+              </div>
+              <div className="form-control">
+                <label className="label">
+                  <span className="label-text">Photo</span>
+                </label>
+                <input
+                  type="file"
+                  name="photo"
+                  placeholder="Photo"
                   className="input input-bordered"
                   required
                 />

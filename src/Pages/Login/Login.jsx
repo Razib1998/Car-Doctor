@@ -1,42 +1,39 @@
-
-import { useContext } from 'react';
-import img from '../../../public/assets/images/login/login.svg'
+import { useContext } from "react";
+import img from "../../../public/assets/images/login/login.svg";
 import { FaFacebook } from "react-icons/fa";
 import { FaGoogle } from "react-icons/fa";
 import Swal from "sweetalert2";
-import { Link } from 'react-router-dom';
-import { AuthContext } from '../../AuthProvider/AuthProvider';
-
+import { Link, useNavigate } from "react-router-dom";
+import { AuthContext } from "../../AuthProvider/AuthProvider";
 
 const Login = () => {
+  const { signIn } = useContext(AuthContext);
+  const navigate = useNavigate()
 
-    const {signIn} = useContext(AuthContext);
+  const handleLogin = (event) => {
+    event.preventDefault();
+    const form = event.target;
+    const email = form.email.value;
+    const password = form.password.value;
+    console.log(email, password);
 
-    const handleLogin = e =>{
-        e.preventDefault();
-        const form = e.target;
-        const email = form.email.value;
-        const password = form.password.value;
-        console.log(email, password);
-
-        signIn(email, password)
-        .then(result =>{
-            const user =  result.user;
-            console.log(user);
-            if(user){
-                Swal.fire({
-                  title: "Good job!",
-                  text: "Login Successfully!",
-                  icon: "success",
-                });
-            }
-
-        })
-        .then(error =>{
-            console.error(error)
-        })
-
-    }
+    signIn(email, password)
+      .then((result) => {
+        const user = result.user;
+        form.reset();
+        navigate("/")
+        if (user) {
+          Swal.fire({
+            title: "Congratulations!",
+            text: "Login Successfully!",
+            icon: "success",
+          });
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
   return (
     <div>
       <div className="hero min-h-screen bg-base-200">
@@ -77,9 +74,7 @@ const Login = () => {
                 </label>
               </div>
               <div className="form-control mt-6">
-                <Link to={"/"}>
-                  <button className="btn btn-primary">Login</button>
-                </Link>
+                <button className="btn btn-primary w-full">Login</button>
               </div>
             </form>
             <p className="text-center">Or Sign In With</p>

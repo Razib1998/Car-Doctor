@@ -1,7 +1,18 @@
-import { useLoaderData } from "react-router-dom";
+import { useContext, useState } from "react";
+import {  useLoaderData } from "react-router-dom";
+import Swal from "sweetalert2";
+import { AuthContext } from "../../AuthProvider/AuthProvider";
 
 const CheckoutForm = () => {
-  const { title, img } = useLoaderData();
+  const { title, img, price } = useLoaderData();
+  const [selectedValue, setSelectedValue] = useState();
+  const {user} = useContext(AuthContext);
+
+
+  const handleSelectedValue = (e) => {
+    setSelectedValue(e.target.value);
+  };
+ 
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -9,19 +20,44 @@ const CheckoutForm = () => {
     const firstName = form.firstName.value;
     const lastName = form.lastName.value;
     const phone = form.phone.value;
-    const email = form.email.value;
+    const email = user?.email;
+    const color = form.color.value;
+    const size = selectedValue;
     const message = form.message.value;
 
-    const order = {
+    const booking = {
       firstName,
       lastName,
       phone,
+      size,
+      color,
+      price,
       email,
+      title,
       img,
       message,
     };
 
-    console.log(order);
+    
+
+    fetch("http://localhost:3000/bookings", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json"
+      },
+      body: JSON.stringify(booking)
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if(data.insertedId){
+          Swal.fire({
+            title: "Good job!",
+            text: "You clicked the button!",
+            icon: "success",
+          });
+        }
+        form.reset();
+      })
   };
   return (
     <div>
@@ -58,6 +94,27 @@ const CheckoutForm = () => {
                   />
                 </label>
               </div>
+              <div>
+                <label className="form-control ">
+                  <div className="label">
+                    <span className="label-text">Size</span>
+                  </div>
+                  <select
+                    className="select select-bordered w-full max-w-xs"
+                    value={selectedValue}
+                    onChange={handleSelectedValue}
+                  >
+                    <option>
+                      what is the car Size?
+                    </option>
+                    <option>XS</option>
+                    <option>S</option>
+                    <option>M</option>
+                    <option>L</option>
+                    <option>XL</option>
+                  </select>
+                </label>
+              </div>
             </div>
 
             <div>
@@ -82,7 +139,21 @@ const CheckoutForm = () => {
                   <input
                     type="email"
                     name="email"
+                    defaultValue={user?.email}
                     placeholder="email"
+                    className="input input-bordered w-[400px] "
+                  />
+                </label>
+              </div>
+              <div>
+                <label className="form-control ">
+                  <div className="label">
+                    <span className="label-text">Color</span>
+                  </div>
+                  <input
+                    type="text"
+                    name="color"
+                    placeholder="color"
                     className="input input-bordered w-[400px] "
                   />
                 </label>

@@ -7,6 +7,8 @@ import Login from "../Pages/Login/Login";
 import Registration from "../Pages/Registration/Registration";
 import ServiceDetails from "../Pages/ServiceCard/ServiceDetails";
 import CheckoutForm from "../Pages/CheckoutForm/CheckoutForm";
+import Bookings from "../Pages/Bookings/Bookings";
+import PrivateRoute from "./PrivateRoute";
 
 
 const myRouter = createBrowserRouter([
@@ -26,6 +28,14 @@ const myRouter = createBrowserRouter([
       {
         path: "/contact",
         element: <Contact></Contact>,
+      },
+      {
+        path: "/bookings",
+        element: (
+          <PrivateRoute>
+            <Bookings></Bookings>
+          </PrivateRoute>
+        ),
       },
       {
         path: "/login",
