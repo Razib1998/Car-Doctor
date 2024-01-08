@@ -5,23 +5,39 @@ import { FaGoogle } from "react-icons/fa";
 import Swal from "sweetalert2";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
+import axios from "axios";
 
 const Login = () => {
   const { signIn } = useContext(AuthContext);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const handleLogin = (event) => {
     event.preventDefault();
     const form = event.target;
     const email = form.email.value;
     const password = form.password.value;
-    console.log(email, password);
 
     signIn(email, password)
       .then((result) => {
         const user = result.user;
-        form.reset();
-        navigate("/")
+
+        // get access token
+
+        const loggedInUser = { email };
+
+        axios
+          .post("http://localhost:3000/jwt", loggedInUser, {
+            withCredentials: true,
+          })
+          .then((res) => {
+            console.log(res.data);
+            if (res.data.success) {
+            navigate("/")
+            }
+          });
+
+        
+
         if (user) {
           Swal.fire({
             title: "Congratulations!",
